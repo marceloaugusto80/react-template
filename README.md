@@ -45,7 +45,7 @@ or if you want Webpack to watch file chances:
 npx webpack -w
 ```
 
-To serve the applicatoin:
+To serve the application, type:
 ```
 static-server
 ```
@@ -57,9 +57,3 @@ In Visual Code press F5 or open the terminal in the project folder and type:
 ```
 npm test
 ```
-
-
-
-## TODO
-
-* use webpack dev server to spin the webapp. Current I'm using [static-server](https://www.npmjs.com/package/static-server) package installed globally.
