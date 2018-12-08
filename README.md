@@ -16,16 +16,40 @@ Test run already defined if you are using [Visual Code](https://code.visualstudi
 
 ## How to
 
+### Do it once
+Clone the repo.
+
 Install [Node](https://nodejs.org) if you don't have it.
 
-It's nice to have [Git](https://git-scm.com/downloads) installed too.
-
-Clone the repo.
+Recomended to install [npx](https://www.npmjs.com/package/npx) and [static-server](https://www.npmjs.com/package/static-server) packages globally:
+```
+npm i -g npx
+npm i -g static-server
+```
 
 Open the terminal in the project folder and type:
 ```
 npm install
 ```
+That will install the dependencies. 
+
+### Do it during development
+
+To build, type:
+
+```
+npx webpack
+```
+or if you want Webpack to watch file chances:
+```
+npx webpack -w
+```
+
+To serve the applicatoin:
+```
+static-server
+```
+
 
 ### To run the tests:
 
