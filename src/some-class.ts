@@ -12,7 +12,7 @@ export class SomeClass {
         return new Promise<string>(resolve=>{
             setTimeout(() => {
                 resolve(this.getTwoFoos());
-            }, delay);
+            }, delay); 
         });
     }
 }
