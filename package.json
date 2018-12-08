@@ -1,0 +1,33 @@
+{
+  "name": "mediaviewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/mock-fs": "^3.6.30",
+    "@types/node": "^10.12.12",
+    "@types/react": "^16.7.13",
+    "@types/react-dom": "^16.0.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "chai": "^4.2.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "mocha": "^5.2.0",
+    "mock-fs": "^4.7.0",
+    "source-map-loader": "^0.2.4",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
