@@ -14,6 +14,8 @@ Build and bundling by [Webpack](https://webpack.js.org/).
 
 Test run already defined if you are using [Visual Code](https://code.visualstudio.com/download).
 
+Currently using [Polyfill.io](https://polyfill.io/v2/docs/) to cross-browser compatibility.
+
 ## How to
 
 ### Do it once
