@@ -13,4 +13,13 @@ describe("SomeClass", function(){
         expect(actual).to.be.eq(expected);
     });
     
+    it("GetTwoFoosAsync return 2 foos", async function(){
+        
+        let expected = "barbar";
+
+        let actual = await new SomeClass("bar").getTwoFoosAsync();
+        
+        expect(actual).to.be.eq(expected);
+    });
+
 });

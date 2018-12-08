@@ -3,8 +3,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 let vendor = [
-    { from: "node_modules/react/umd/react.production.min.js", to: "vendor"},
-    { from: "node_modules/react-dom/umd/react-dom.production.min.js", to: "vendor"}
+    { from: "node_modules/react/umd/react.development.js", to: "vendor"},
+    { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"}
 ];
 
 
