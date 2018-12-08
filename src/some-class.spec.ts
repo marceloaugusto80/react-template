@@ -8,7 +8,7 @@ describe("SomeClass", function(){
         
         let expected = "barbar";
 
-        let actual = new SomeClass("bar").GetTwoFoos();
+        let actual = new SomeClass("bar").getTwoFoos();
         
         expect(actual).to.be.eq(expected);
     });

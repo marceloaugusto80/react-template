@@ -4,7 +4,7 @@ export class SomeClass {
         this.foo = foo;
     }
 
-    GetTwoFoos() {
+    getTwoFoos() {
         return this.foo + this.foo;
     }
 }
