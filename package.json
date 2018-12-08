@@ -19,6 +19,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "mocha": "^5.2.0",
     "source-map-loader": "^0.2.4",
+    "static-server": "^2.2.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",

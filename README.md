@@ -23,10 +23,9 @@ Clone the repo.
 
 Install [Node](https://nodejs.org) if you don't have it.
 
-Recomended to install [npx](https://www.npmjs.com/package/npx) and [static-server](https://www.npmjs.com/package/static-server) packages globally:
+Install [npx](https://www.npmjs.com/package/npx) globally:
 ```
 npm i -g npx
-npm i -g static-server
 ```
 
 Open the terminal in the project folder and type:
@@ -49,7 +48,7 @@ npx webpack -w
 
 To serve the application, type:
 ```
-static-server
+npx static-server
 ```
 
 
