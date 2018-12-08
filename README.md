@@ -40,7 +40,7 @@ To build, type:
 ```
 npx webpack
 ```
-or if you want Webpack to watch file chances:
+or if you want Webpack to watch file changes:
 ```
 npx webpack -w
 ```
