@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "npx webpack -w"
+    "build": "npx webpack -w",
+    "serve": "npx static-server --port 9000"
   },
   "author": "",
   "license": "ISC",
