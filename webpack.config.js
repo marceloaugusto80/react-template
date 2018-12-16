@@ -1,20 +1,28 @@
 require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
+
+
 // list of non bundled libraries
-let vendor = [
+let externalLibs = [
     { from: "node_modules/react/umd/react.development.js", to: "vendor"},
     { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"}
 ];
 
 
+
 module.exports = {
+    
+    // the entry point of the application. where your app start executing.
     entry: "./src/app.tsx",
+
+    // the compilation/bundling output
     output: {
         filename: "app.js",
         path: __dirname + "/dist"
     },
 
+    // change to "production" before deploying
     mode: "development",
 
     // Enable sourcemaps for debugging webpack's output.
@@ -36,7 +44,7 @@ module.exports = {
         ]
     },
 
-    // this libraries are used in our code, but not bundled with it
+    // this libraries are used in our code, but not bundled with it. It saves compilation time.
     externals: {
         'react': 'React',  
         'react-dom' : 'ReactDOM'  
@@ -44,7 +52,7 @@ module.exports = {
 
     plugins: [
         // copy libraries that were not bundled to the output directory
-        new CopyWebpackPlugin(vendor)
+        new CopyWebpackPlugin(externalLibs)
     ]
 
 };
