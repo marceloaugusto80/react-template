@@ -36,20 +36,13 @@ That will install the dependencies.
 
 ### Do it during development
 
-To build, type:
+To start, type:
 
 ```
-npx webpack
+npm start
 ```
-or if you want Webpack to watch file changes:
-```
-npx webpack -w
-```
+it will build and serve the application.
 
-To serve the application, type:
-```
-npx static-server
-```
 
 
 ### To run the tests:

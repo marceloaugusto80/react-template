@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "build": "npx webpack -w",
-    "serve": "npx static-server --port 9000"
+    "start": "npx webpack-dev-server --port 9000"
   },
   "author": "",
   "license": "ISC",
@@ -33,7 +32,8 @@
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
