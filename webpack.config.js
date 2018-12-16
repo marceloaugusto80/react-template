@@ -7,7 +7,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 let externalFiles = [
     { from: "node_modules/react/umd/react.development.js", to: "vendor"},
     { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"},
-    { from: "src/index.html", to: ""}
+    { from: "src/index.html", to: ""},
+    { from: "src/favicon.ico", to: ""}
 ];
 
 
