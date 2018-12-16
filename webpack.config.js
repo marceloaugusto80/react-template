@@ -1,15 +1,6 @@
 require("webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
-
-
-// list of non bundled files
-let externalFiles = [
-    { from: "node_modules/react/umd/react.development.js", to: "vendor"},
-    { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"},
-    { from: "src/index.html", to: ""},
-    { from: "src/favicon.ico", to: ""}
-];
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 
 
 
@@ -59,15 +50,19 @@ module.exports = {
         ]
     },
 
-    // this libraries are used in our code, but not bundled with it. It saves compilation time.
-    externals: {
-        'react': 'React',  
-        'react-dom' : 'ReactDOM'  
-       },
-
     plugins: [
-        // take files that were not bundled and copy them to the output folder
-        new CopyWebpackPlugin(externalFiles)
+
+        // auto generates index.html
+        new HtmlWebpackPlugin({ title: "React Template", hash: true, favicon: "src/favicon.ico", template: "src/index.html" }),
+        
+        // include exernals to index.html
+        new HtmlWebpackExternalsPlugin({
+            externals: [
+                { module: "react", global: "React", entry: "umd/react.development.js" },
+                { module: "react-dom", global: "ReactDOM", entry: "umd/react-dom.development.js" },
+            ]
+        })
+        
     ]
 
 };

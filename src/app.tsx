@@ -4,7 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Layout } from "./components/layout";
 import { AsyncDemo } from "./components/AsyncDemo";
-import { FancyDemo } from "./components/FancyDemo";
+import { FancyDemo } from "./components/FancyDemo"; 
 
 
 let mainUi = (
