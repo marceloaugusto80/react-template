@@ -3,10 +3,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 
-// list of non bundled libraries
-let externalLibs = [
+// list of non bundled files
+let externalFiles = [
     { from: "node_modules/react/umd/react.development.js", to: "vendor"},
-    { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"}
+    { from: "node_modules/react-dom/umd/react-dom.development.js", to: "vendor"},
+    { from: "src/index.html", to: ""}
 ];
 
 
@@ -22,7 +23,7 @@ module.exports = {
         path: __dirname + "/dist"
     },
 
-    // change to "production" before deploying
+    // current environment. change to "production" before deploying
     mode: "development",
 
     // Enable sourcemaps for debugging webpack's output.
@@ -35,12 +36,25 @@ module.exports = {
 
     module: {
         rules: [
+            
             // transpiling for older browsers
             { test: /\.tsx?$/, loader: 'babel-loader', options: { presets: ["@babel/preset-env"] } },
+
             // transpiling typescript
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+
             // maintain source maps continuity
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            
+            // bundle css references
+            { test: /\.css$/, loader: "css-loader" },
+
+            // bundle other file references
+            { 
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader', 
+                options: { name: '[name].[ext]', outputPath: 'fonts/' }
+            }
+            
         ]
     },
 
@@ -51,8 +65,8 @@ module.exports = {
        },
 
     plugins: [
-        // copy libraries that were not bundled to the output directory
-        new CopyWebpackPlugin(externalLibs)
+        // take files that were not bundled and copy them to the output folder
+        new CopyWebpackPlugin(externalFiles)
     ]
 
 };

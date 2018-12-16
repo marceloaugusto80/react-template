@@ -28,10 +28,10 @@ export function FancyDemo(){
                 <Grid xs={2}>
                     <Button variant="contained">A Button</Button>
                 </Grid>
-                <Grid xs={2}>
+                <Grid xs={3}>
                     <CircularProgress variant="indeterminate" />
                 </Grid>
-                <Grid xs={2}>
+                <Grid xs={3}>
                     <LinearProgress variant="indeterminate" />
                 </Grid>
             </Grid>

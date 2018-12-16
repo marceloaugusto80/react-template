@@ -1,4 +1,5 @@
 import "@babel/polyfill";
+import "typeface-roboto";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Layout } from "./components/layout";
