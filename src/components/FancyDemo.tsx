@@ -1,40 +1,56 @@
 import * as React from "react";
-import { LinearProgress, CircularProgress, Button, Grid, AppBar, TextField, Select } from "@material-ui/core";
-import { element } from "prop-types";
+import { LinearProgress, CircularProgress, Button, Grid, AppBar, TextField, Select, Tooltip } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 
 export function FancyDemo(){
 
-    var options = ["Absolute, Beam, Car, Director, Errant, Fox, Good, Hello, Intel, Jack"];
+    let source = ["Luke", "Solo", "Vader", "Yoda", "Leia", "Lando", "C3PO"];
+    
+    let options = source.map((val, i)=>{
+        return <option key={i} value={i}>{val}</option>;
+    });
 
     return (
         <div>
-            <AppBar color="primary" position="fixed">
-                <h1>Fancy components</h1>
+            
+            <AppBar color="primary" position="static">
+                <Typography variant="subheading" color="inherit">Fancy components</Typography>
             </AppBar>
-            <hr/>
-            <Grid container >
-                <Grid xs={2}>
-                    <Select native value={0} >
-                        <option value="" />
-                        <option value={0}>Foo</option>
-                        <option value={1}>Bar</option>
-                        <option value={2}>FooBar</option>
-                    </Select>
+            <br/>
+            <Grid container spacing={24}>
+                
+                <Grid item xs={1}>
+                    <Select native value={0}>{options}</Select>
                 </Grid>
-                <Grid xs={2}>
-                    <TextField type="time" />
+                
+                <Grid item xs={2}>
+                    <Button variant="contained">Button</Button>
+                    <Button variant="text">Button</Button>
+                    <Button variant="outlined">Button</Button>
                 </Grid>
-                <Grid xs={2}>
-                    <Button variant="contained">A Button</Button>
-                </Grid>
-                <Grid xs={3}>
+                
+                <Grid item xs={1}>
                     <CircularProgress variant="indeterminate" />
+                    <CircularProgress variant="indeterminate" color="secondary" />
                 </Grid>
-                <Grid xs={3}>
+                
+                <Grid item xs={2}>
                     <LinearProgress variant="indeterminate" />
+                    <br/>
+                    <LinearProgress variant="indeterminate" color="secondary" />
                 </Grid>
+
+                <Grid item xs={2}>
+                    <Tooltip title="Hello, bro!">
+                        <div>
+                            <Typography variant="h4">Tooltip here</Typography>
+                        </div>
+                    </Tooltip>
+                </Grid>
+            
             </Grid>
+        
         </div>
     );
 }
