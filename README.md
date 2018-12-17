@@ -4,7 +4,7 @@
 
 Basic fron-end template. 
 
-## Techs
+## Details
 
 Core based on [Typescript](https://www.typescriptlang.org/) and [React](https://reactjs.org/).
 
