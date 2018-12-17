@@ -41,11 +41,14 @@ module.exports = {
             // bundle css references
             { test: /\.css$/, use: ["style-loader", "css-loader"] },
 
-            // bundle other file references
+            // bundle css file references
             { 
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader', 
                 options: { name: '[name].[ext]', outputPath: 'fonts/' }
-            }
+            },
+
+            // bundle image files
+            { test: /\.(jpg|png)$/, use: { loader: "file-loader", options: { name: "[path][name].[hash].[ext]", } } },
             
         ]
     },

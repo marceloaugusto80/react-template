@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Calculator} from "../core/calculator";
+import { Button, Segment, Header, Container, Input, Message } from "semantic-ui-react";
 
 
 interface AsyncDemoProps{
@@ -48,34 +49,36 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
     render(){
 
         return(
-            <div>
+            <Container>
                 
-                <p>{this.props.title}</p>
+                <Header>{this.props.title}</Header>
                 <p>Current async delay is { this.props.delay / 1000 } secs.</p>
                 
-                <label>Value A: </label>
-                <input 
-                    type="text" 
+                <Input 
+                    placeholder="Value A..." 
                     value={this.state.valueA} 
                     onChange={this.onInputChangeA.bind(this)}/>
                 
-                <label>Value B: </label>
-                <input 
-                    type="text" 
+                <span> + </span>
+                
+                <Input 
+                    placeholder="Value B..."
                     value={this.state.valueB} 
                     onChange={this.onInputChangeB.bind(this)}/>
-                
-                <button 
+                <Button 
+                    primary
+                    loading={this.state.isCalculating}
                     disabled={this.state.isCalculating} 
                     onClick={this.showMessage.bind(this)}>
                         { this.state.isCalculating ? "Wait..." : "Click here to sum"}
-                </button>
+                </Button>
                 
-                <p>
-                    <span>Result: </span>{this.state.result}
-                </p>
+                <Message>
+                    <Message.Header>Result</Message.Header>
+                    <p>{this.state.result}</p>
+                </Message>
             
-            </div>
+            </Container>
         );
 
     }

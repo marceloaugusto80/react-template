@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Container } from "semantic-ui-react";
+
 
 export interface LayoutProps{
     title:string;
@@ -14,11 +16,13 @@ export class Layout extends React.Component<LayoutProps, {}>{
     
 
     render(){
-        return (<div>
+        return (
+        <Container>
             <h1>{this.props.title}</h1>
             <div>
                 {this.props.children}
             </div>
-        </div>);
+        </Container>
+        );
     }
 }
