@@ -18,7 +18,7 @@ Currently using [Babel](https://babeljs.io/) to cross-browser compatibility.
 
 ## How to
 
-### Do it once
+### Setup
 Clone the repo.
 
 Install [Node](https://nodejs.org) if you don't have it.
@@ -34,9 +34,9 @@ npm install
 ```
 That will install the dependencies. 
 
-### Do it during development
+### Run
 
-To start, type:
+To run the app, type:
 
 ```
 npm start
