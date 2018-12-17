@@ -12,7 +12,8 @@ module.exports = {
     // the compilation/bundling output
     output: {
         filename: "app.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist",
+        publicPath: "/"
     },
 
     // current environment. change to "production" before deploying
@@ -20,6 +21,10 @@ module.exports = {
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
+
+    devServer: {
+        historyApiFallback: true
+    },
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

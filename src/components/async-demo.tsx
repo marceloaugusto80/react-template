@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Calculator} from "../core/calculator";
-import { Button, Segment, Header, Container, Input, Message } from "semantic-ui-react";
+import { Button, Header, Container, Input, Message } from "semantic-ui-react";
 
 
 interface AsyncDemoProps{
