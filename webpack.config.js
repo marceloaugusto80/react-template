@@ -7,7 +7,7 @@ const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 module.exports = {
     
     // the entry point of the application. where your app start executing.
-    entry: "./src/app.tsx",
+    entry: ["@babel/polyfill", "./src/app.tsx"],
 
     // the compilation/bundling output
     output: {
@@ -35,7 +35,20 @@ module.exports = {
         rules: [
             
             // transpiling for older browsers
-            { test: /\.tsx?$/, loader: 'babel-loader', options: { presets: ["@babel/preset-env"] } },
+            { test: /\.tsx?$/, loader: "babel-loader", exclude: /(node_modules|bower_components)/, 
+                options: { 
+                    presets: [
+                        "@babel/preset-react", 
+                        ["@babel/preset-env", 
+                        {
+                            "targets": {
+                                "chrome": "58", 
+                                "ie": "11"
+                            }
+                        }] 
+                    ] 
+                } 
+            },
 
             // transpiling typescript
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
@@ -48,12 +61,15 @@ module.exports = {
 
             // bundle css file references
             { 
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader', 
-                options: { name: '[name].[ext]', outputPath: 'fonts/' }
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader", 
+                options: { name: "[name].[ext]", outputPath: "fonts/" }
             },
 
             // bundle image files
-            { test: /\.(jpg|png)$/, use: { loader: "file-loader", options: { name: "[path][name].[hash].[ext]", } } },
+            { 
+                test: /\.(jpg|png)$/, use: { loader: "file-loader", 
+                options: { name: "[name].[hash].[ext]", outputPath: "images/" } } 
+            },
             
         ]
     },
@@ -70,7 +86,7 @@ module.exports = {
                 { module: "react-dom", global: "ReactDOM", entry: "umd/react-dom.development.js" },
             ]
         })
-        
+
     ]
 
 };
