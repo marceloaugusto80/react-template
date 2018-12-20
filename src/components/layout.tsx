@@ -15,7 +15,6 @@ export interface LayoutProps{
 }
 
 
-
 export class Layout extends React.Component<LayoutProps, {}>{
 
 
