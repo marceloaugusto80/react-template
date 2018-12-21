@@ -3,7 +3,7 @@ import { Calculator} from "../core/calculator";
 import { Button, Header, Container, Input, Message } from "semantic-ui-react";
 
 
-interface AsyncDemoProps{
+export interface AsyncDemoProps{
     title: string;
     delay: number;
 }

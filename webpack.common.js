@@ -1,8 +1,7 @@
 require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
-
-
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     
@@ -15,12 +14,6 @@ module.exports = {
         path: __dirname + "/dist",
         publicPath: "/"
     },
-
-    // current environment. change to "production" before deploying
-    mode: "development",
-
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
 
     devServer: {
         historyApiFallback: true
@@ -35,9 +28,9 @@ module.exports = {
         rules: [
             
             // transpiling for older browsers
-            { test: /\.tsx?$/, loader: "babel-loader", exclude: /(node_modules|bower_components)/, 
+            { test: /\.tsx?$/, loader: "babel-loader", exclude: /node_modules/, 
                 options: { 
-                    presets: [
+                    "presets": [
                         "@babel/preset-react", 
                         ["@babel/preset-env", 
                         {
@@ -46,7 +39,7 @@ module.exports = {
                                 "ie": "11"
                             }
                         }] 
-                    ] 
+                    ]
                 } 
             },
 
@@ -57,7 +50,11 @@ module.exports = {
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
             
             // bundle css references
-            { test: /\.css$/, use: ["style-loader", "css-loader"] },
+            { test: /\.css$/, use: [ 
+                { loader: MiniCssExtractPlugin.loader }, 
+                "css-loader"
+                ]
+            },
 
             // bundle css file references
             { 
@@ -76,16 +73,18 @@ module.exports = {
 
     plugins: [
 
+        // delete everything from dist folder before build
+        new CleanWebpackPlugin(["dist"]),
+
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css',
+        }),
+
         // auto generates index.html
         new HtmlWebpackPlugin({ title: "React Template", hash: true, favicon: "src/favicon.ico", template: "src/index.html" }),
         
-        // include exernals to index.html
-        new HtmlWebpackExternalsPlugin({
-            externals: [
-                { module: "react", global: "React", entry: "umd/react.development.js" },
-                { module: "react-dom", global: "ReactDOM", entry: "umd/react-dom.development.js" },
-            ]
-        })
+        
 
     ]
 
