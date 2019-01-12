@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Calculator} from "../core/calculator";
-import { Button, Header, Container, Input, Message } from "semantic-ui-react";
-
+import { Add } from "@material-ui/icons"
+import { Button, TextField, Grid, Typography, CircularProgress, Paper } from "@material-ui/core";
 
 export interface AsyncDemoProps{
     title: string;
@@ -49,36 +49,50 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
     render(){
 
         return(
-            <Container>
-                
-                <Header>{this.props.title}</Header>
-                <p>Current async delay is { this.props.delay / 1000 } secs.</p>
-                
-                <Input 
-                    placeholder="Value A..." 
-                    value={this.state.valueA} 
-                    onChange={this.onInputChangeA.bind(this)}/>
-                
-                <span> + </span>
-                
-                <Input 
-                    placeholder="Value B..."
-                    value={this.state.valueB} 
-                    onChange={this.onInputChangeB.bind(this)}/>
-                <Button 
-                    primary
-                    loading={this.state.isCalculating}
-                    disabled={this.state.isCalculating} 
-                    onClick={this.showMessage.bind(this)}>
-                        { this.state.isCalculating ? "Wait..." : "Click here to sum"}
-                </Button>
-                
-                <Message>
-                    <Message.Header>Result</Message.Header>
-                    <p>{this.state.result}</p>
-                </Message>
+            <Grid container>
+                <Grid item xs={12}>
+                    <Paper style={{padding: 8, marginBottom: 16, backgroundColor: "#e9ecff"}}>
+                        <Typography variant="h5">{this.props.title}</Typography>
+                        <Typography variant="h6">Current async delay is { this.props.delay / 1000 } secs.</Typography>
+                    </Paper>
+                    
+                </Grid>
+                <Grid item xs={1}>
+                    <TextField
+                        type="number"
+                        placeholder="Value A..." 
+                        value={this.state.valueA} 
+                        onChange={this.onInputChangeA.bind(this)}/>
+                </Grid>
+                <Grid item xs={1} style={{textAlign: "center"}}>
+                    <Add/>
+                </Grid>
+                <Grid item xs={1}>
+                    <TextField 
+                        type="number"
+                        placeholder="Value B..."
+                        value={this.state.valueB} 
+                        onChange={this.onInputChangeB.bind(this)}/>
+                </Grid>
+                <Grid item xs={2}>
+                    <Button 
+                        color="primary"
+                        disabled={this.state.isCalculating} 
+                        onClick={this.showMessage.bind(this)}>
+                            { this.state.isCalculating ? "Wait..." : "Click here to sum"}
+                    </Button>
+                </Grid>
+                <Grid item xs={12}>
+                    <CircularProgress color="primary" style={{visibility: this.state.isCalculating ? "visible" : "hidden"}} />
+                    <Typography 
+                    variant="h6" 
+                    style={{visibility: this.state.isCalculating ? "hidden" : "visible"}} 
+                    >
+                        Result: {this.state.result}
+                    </Typography>
+                </Grid>
             
-            </Container>
+            </Grid>
         );
 
     }

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Table, Image, Button, Dimmer, Loader } from "semantic-ui-react";
 import Axios from "axios";
+import { CloudCircle } from "@material-ui/icons";
+import { Grid, Button, Table, TableHead, TableRow, TableCell, TableBody, LinearProgress, Typography } from "@material-ui/core";
 
 
 interface DataGridDemoState {
@@ -44,35 +45,45 @@ export class DataGridDemo extends React.Component<{}, DataGridDemoState> {
     render() {
 
         return(
-            <div>
-                <Dimmer active={this.state.isLoading}>
-                    <Loader/>
-                </Dimmer>
-                    <Button onClick={this.getDataAsync.bind(this)}>Download data</Button>
-                    <div>{ this.state.errorMessage }</div>
-                    <Table celled>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell></Table.HeaderCell>
-                                <Table.HeaderCell>Thumb</Table.HeaderCell>
-                                <Table.HeaderCell>Title</Table.HeaderCell>
-                                <Table.HeaderCell>Title char count</Table.HeaderCell>
-                                <Table.HeaderCell>Link</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
+            <Grid container alignContent="center" justify="center" alignItems="center">
+                
+                <Grid item xs={12}>
+                    <Button variant="contained" color="primary" onClick={this.getDataAsync.bind(this)}>
+                        <CloudCircle /> Download data
+                    </Button>
+                    <LinearProgress  style={{visibility: this.state.isLoading ? "visible" : "hidden"}} />
+                </Grid>
+                
+                <Grid item xs={12}>
+                    <Typography variant="body1" color="secondary">{ this.state.errorMessage }</Typography>
+                </Grid>
+              
+                <Grid item xs={12}>
+                    <Table>
+                        <TableHead >
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell>Thumb</TableCell>
+                                <TableCell>Title</TableCell>
+                                <TableCell>Title char count</TableCell>
+                                <TableCell>Link</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                             {this.state.albums.slice(0, 100).map((el, i)=>{
-                                return <Table.Row key={el.id}>
-                                    <Table.Cell>{i+1}</Table.Cell>
-                                    <Table.Cell><Image size="tiny" bordered src={el.thumbnailUrl}/></Table.Cell>
-                                    <Table.Cell>{el.title}</Table.Cell>
-                                    <Table.Cell>{el.title.length}</Table.Cell>
-                                    <Table.Cell><a target="_blank" href={el.url}>{el.url}</a></Table.Cell>
-                                </Table.Row>
+                                return <TableRow key={el.id}>
+                                    <TableCell>{i+1}</TableCell>
+                                    <TableCell><img width={150} height={150} src={el.thumbnailUrl}/></TableCell>
+                                    <TableCell>{el.title}</TableCell>
+                                    <TableCell>{el.title.length}</TableCell>
+                                    <TableCell><a target="_blank" href={el.url}>{el.url}</a></TableCell>
+                                </TableRow>
                             })}
-                        </Table.Body>
+                        </TableBody>
                     </Table>
-            </div>
+                </Grid>
+            
+            </Grid>
 
         );
 

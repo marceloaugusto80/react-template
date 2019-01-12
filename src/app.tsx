@@ -1,4 +1,4 @@
-import "semantic-ui-css/semantic.min.css";
+import "typeface-roboto";
 import "./styles/main.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

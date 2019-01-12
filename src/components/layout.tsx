@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Grid, Segment, List, Rail } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Grid, Typography, AppBar, Paper } from "@material-ui/core";
 
 
 export interface ILayoutLink{
@@ -23,26 +23,32 @@ export class Layout extends React.Component<LayoutProps, {}>{
     }
 
     renderLinks(){
-        return this.props.links.map((el, i)=>{
-            return <List.Item key={i}><Link to={el.route}>{el.name}</Link></List.Item>
-        });
+        return 
     }
 
     render(){
         return (
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Segment>
+            <div>
+                <AppBar position="sticky" style={{marginBottom: 24, padding: 16}}>
+                    <Typography color="inherit" variant="h6">{this.props.title}</Typography>
+                </AppBar>
+                <Grid container spacing={32}>
+                    <Grid item xs={1}>
+                        <Paper style={{padding: 16}}>
+                            {
+                                this.props.links.map((el, i)=>
+                                    <Link to={el.route}>
+                                        <Typography variant="body2" key={i}>{el.name}</Typography>
+                                    </Link>
+                                )
+                            }
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={11}>
                         {this.props.children}
-                        <Rail position="left">
-                            <h1>{this.props.title}</h1>
-                            <List>
-                                {this.renderLinks()}
-                            </List>
-                        </Rail>
-                    </Segment>
-                </Grid.Column>
-            </Grid>
+                    </Grid>
+                </Grid>
+            </div>
         );
     }
 }

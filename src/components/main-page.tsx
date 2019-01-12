@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import { Layout, ILayoutLink } from "./layout";
-import { AsyncDemo, AsyncDemoProps } from "./async-demo";
+import { AsyncDemo } from "./async-demo";
 import { DataGridDemo } from "./data-grid-demo";
 
 
