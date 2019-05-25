@@ -5,20 +5,22 @@
 Basic fron-end template. 
 
 ## Details
+This project uses the following thecnologies and libs:
 
-Core based on [Typescript](https://www.typescriptlang.org/) and [React](https://reactjs.org/).
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
+- [Babel](https://babeljs.io/)
+- [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
+- [React-hot-loader](https://github.com/gaearon/react-hot-loader)
+- [Webpack](https://webpack.js.org/)
 
-Tests powered by [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+Note: Test runner already defined if you are using [Visual Code](https://code.visualstudio.com/download).
 
-Build and bundling by [Webpack](https://webpack.js.org/).
 
-Test run already defined if you are using [Visual Code](https://code.visualstudio.com/download).
+# How to
 
-Currently using [Babel](https://babeljs.io/) to cross-browser compatibility.
-
-## How to
-
-### Setup
+## Setup
 Clone the repo.
 
 Install [Node](https://nodejs.org) if you don't have it.
@@ -32,22 +34,31 @@ Open the terminal in the project folder and type:
 ```
 npm install
 ```
-That will install the dependencies. 
+That will install the project dependencies. 
 
-### Run
+## Run
 
 To run the app, type:
 
 ```
 npm start
 ```
-it will build and serve the application.
+it will build and serve the application with hot reloading.
 
 
 
-### To run the tests:
+## Run the tests:
 
 In Visual Code press F5 or open the terminal in the project folder and type:
 ```
 npm test
 ```
+
+
+## Shipping:
+
+Open the terminal and type:
+```
+npm run build-prod
+```
+The output will be in the ```dist``` folder.
