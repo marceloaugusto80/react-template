@@ -2,50 +2,21 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 
+export class Layout extends React.Component {
 
-export interface ILayoutLink {
-    route: string;
-    name: string;
-}
-
-
-export interface LayoutProps {
-    title: string;
-    links: Array<ILayoutLink>;
-}
-
-
-export class Layout extends React.Component<LayoutProps, {}>{
-
-
-    constructor(props: LayoutProps) {
-        super(props);
-    }
-
-    renderLinks() {
-        return
-    }
 
     render() {
         return (
-            <div>
-                <div style={{ marginBottom: 24, padding: 16 }}>
-                    <div >{this.props.title}</div>
+            <div className="layout">
+                <div className="nav-bar">React Template</div>
+                <div className="side-bar">
+                    <Link to="/">Calculator</Link>
+                    <Link to="/simple-table">Simple table</Link>
                 </div>
-                <div>
-                    <div>
-                        <div style={{ padding: 16 }}>
-                            {
-                                this.props.links.map((el, i) =>
-                                    <Link key={i} to={el.route}>{el.name}</Link>
-                                )
-                            }
-                        </div>
-                    </div>
-                    <div>
-                        {this.props.children}
-                    </div>
+                <div className="content">
+                    {this.props.children}
                 </div>
+                <div className="footer">My App</div>
             </div>
         );
     }

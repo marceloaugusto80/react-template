@@ -2,7 +2,6 @@ import * as React from "react";
 import { Calculator } from "../core/calculator";
 
 export interface AsyncDemoProps {
-    title: string;
     delay: number;
 }
 
@@ -49,17 +48,21 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
         return (
             <div>
                 <div>
-                    <h5>{this.props.title}</h5>
+                    <div className="view-title">Calculate async</div>
                     <p >Current async delay is {this.props.delay / 1000} secs.</p>
                 </div>
                 <div>
                     <input type="number" placeholder="Value A..." value={this.state.valueA} onChange={this.onInputChangeA} />
                     <span>+</span>
                     <input type="number" placeholder="Value B..." value={this.state.valueB} onChange={this.onInputChangeB} />
+                    <button onClick={this.showMessage} disabled={this.state.isCalculating}>Click here to sum</button>
                 </div>
-                <button onClick={this.showMessage} disabled={this.state.isCalculating}>Click here to sum</button>
-                <div style={{ visibility: this.state.isCalculating ? "visible" : "collapse" }}>Wait for async calculation...</div>
-                <div style={{ visibility: this.state.isCalculating ? "collapse" : "visible" }}> Result: {this.state.result}</div>
+                <div>
+                    <span>Result: </span>
+                    <span>
+                        {this.state.isCalculating ? "Wait for async calculation..." : this.state.result}
+                    </span>
+                </div>
             </div>
         );
 

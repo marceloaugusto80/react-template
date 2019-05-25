@@ -21,7 +21,7 @@ export class DataGridDemo extends React.Component<{}, DataGridDemoState> {
 
     constructor(props: {}) {
         super(props);
-        this.state = { isLoading: false, albums: [], errorMessage: "" };
+        this.state = { isLoading: false, albums: [], errorMessage: "foo" };
     }
 
     getDataAsync = async () => {
@@ -45,30 +45,38 @@ export class DataGridDemo extends React.Component<{}, DataGridDemoState> {
 
         return (
             <div>
+                <div className="view-title">Download async</div>
                 <button onClick={this.getDataAsync}>Download data</button>
-                <div>{this.state.errorMessage}</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td>Thumb</td>
-                            <td>Title</td>
-                            <td>Title char count</td>
-                            <td>Link</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.albums.slice(0, 100).map((el, i) => {
-                            return <tr key={el.id}>
-                                <td>{i + 1}</td>
-                                <td><img width={150} height={150} src={el.thumbnailUrl} /></td>
-                                <td>{el.title}</td>
-                                <td>{el.title.length}</td>
-                                <td><a target="_blank" href={el.url}>{el.url}</a></td>
+                <span>{this.state.errorMessage}</span>
+                {
+                    this.state.albums && this.state.albums.length > 0 &&
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Thumb</th>
+                                <th>Title</th>
+                                <th>Title char count</th>
+                                <th>Link</th>
                             </tr>
-                        })}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {this.state.albums.slice(0, 100).map((el, i) => {
+                                return <tr key={el.id}>
+                                    <td>{i + 1}</td>
+                                    <td><img width={100} height={100} src={el.thumbnailUrl} /></td>
+                                    <td>{el.title}</td>
+                                    <td>{el.title.length}</td>
+                                    <td><a target="_blank" href={el.url}>{el.url}</a></td>
+                                </tr>
+                            })}
+                        </tbody>
+                    </table>
+                }
+                {
+                    this.state.isLoading &&
+                    <div>Downloading...</div>
+                }
             </div>
 
 
