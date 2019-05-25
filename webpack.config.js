@@ -37,7 +37,12 @@ function getConfig(isDev = true) {
 
         resolve: {
             // Add '.ts' and '.tsx' as resolvable extensions.
-            extensions: [".ts", ".tsx", ".js", ".json"]
+            extensions: [".ts", ".tsx", ".js", ".json"],
+
+            // react-hot-loader replaces react-dom
+            alias: {
+                'react-dom': '@hot-loader/react-dom'
+            }
         },
 
 
@@ -48,7 +53,7 @@ function getConfig(isDev = true) {
                 {
                     test: /\.tsx?$/, loader: "babel-loader", exclude: /node_modules/,
                     options: {
-                        "presets": [
+                        presets: [
                             "@babel/preset-react",
                             ["@babel/preset-env",
                                 {
@@ -57,6 +62,9 @@ function getConfig(isDev = true) {
                                         "ie": "11"
                                     }
                                 }]
+                        ],
+                        plugins: [
+                            "react-hot-loader/babel"
                         ]
                     }
                 },
@@ -71,7 +79,12 @@ function getConfig(isDev = true) {
                 {
                     test: /\.(sa|sc|c)ss$/,
                     use: [
-                        { loader: MiniCssExtractPlugin.loader },
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                                hmr: isDev
+                            }
+                        },
                         "css-loader",
                         "sass-loader"
                     ]

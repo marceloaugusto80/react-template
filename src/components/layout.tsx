@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -36,7 +37,7 @@ export class Layout extends React.Component<LayoutProps, {}>{
                         <div style={{ padding: 16 }}>
                             {
                                 this.props.links.map((el, i) =>
-                                    <a href={el.route}>{el.name}</a>
+                                    <Link key={i} to={el.route}>{el.name}</Link>
                                 )
                             }
                         </div>

@@ -54,14 +54,12 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
                 </div>
                 <div>
                     <input type="number" placeholder="Value A..." value={this.state.valueA} onChange={this.onInputChangeA} />
-                    <h1>+</h1>
-                </div>
-                <div>
+                    <span>+</span>
                     <input type="number" placeholder="Value B..." value={this.state.valueB} onChange={this.onInputChangeB} />
                 </div>
                 <button onClick={this.showMessage} disabled={this.state.isCalculating}>Click here to sum</button>
-                <div style={{ visibility: this.state.isCalculating ? "collapse" : "visible" }}>Wait for async calculation...</div>
-                <div style={{ visibility: this.state.isCalculating ? "visible" : "collapse" }}> Result: {this.state.result}</div>
+                <div style={{ visibility: this.state.isCalculating ? "visible" : "collapse" }}>Wait for async calculation...</div>
+                <div style={{ visibility: this.state.isCalculating ? "collapse" : "visible" }}> Result: {this.state.result}</div>
             </div>
         );
 
