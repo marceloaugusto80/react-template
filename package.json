@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "npx webpack-dev-server --hot --port 9000 --config webpack.dev.js",
-    "build": "npx webpack --config webpack.prod.js"
+    "start": "npx webpack-dev-server --env.DEVELOPMENT --hot",
+    "build-dev": "npx webpack --env.DEVELOPMENT",
+    "build-prod": "npx webpack --env.PRODUCTION"
   },
   "author": "",
   "license": "ISC",
@@ -32,19 +33,17 @@
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.6.0",
     "mocha": "^6.1.4",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
-    "style-loader": "^0.23.1",
     "ts-node": "^8.1.1",
     "typescript": "^3.4.5",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1",
-    "webpack-merge": "^4.2.1"
+    "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "@material-ui/core": "^3.8.3",
-    "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

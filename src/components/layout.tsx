@@ -1,16 +1,15 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { Grid, Typography, AppBar, Paper } from "@material-ui/core";
 
 
-export interface ILayoutLink{
+
+export interface ILayoutLink {
     route: string;
     name: string;
 }
 
 
-export interface LayoutProps{
-    title:string;
+export interface LayoutProps {
+    title: string;
     links: Array<ILayoutLink>;
 }
 
@@ -18,36 +17,34 @@ export interface LayoutProps{
 export class Layout extends React.Component<LayoutProps, {}>{
 
 
-    constructor(props:LayoutProps){
+    constructor(props: LayoutProps) {
         super(props);
     }
 
-    renderLinks(){
-        return 
+    renderLinks() {
+        return
     }
 
-    render(){
+    render() {
         return (
             <div>
-                <AppBar position="sticky" style={{marginBottom: 24, padding: 16}}>
-                    <Typography color="inherit" variant="h6">{this.props.title}</Typography>
-                </AppBar>
-                <Grid container spacing={32}>
-                    <Grid item xs={1}>
-                        <Paper style={{padding: 16}}>
+                <div style={{ marginBottom: 24, padding: 16 }}>
+                    <div >{this.props.title}</div>
+                </div>
+                <div>
+                    <div>
+                        <div style={{ padding: 16 }}>
                             {
-                                this.props.links.map((el, i)=>
-                                    <Link to={el.route}>
-                                        <Typography variant="body2" key={i}>{el.name}</Typography>
-                                    </Link>
+                                this.props.links.map((el, i) =>
+                                    <a href={el.route}>{el.name}</a>
                                 )
                             }
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={11}>
+                        </div>
+                    </div>
+                    <div>
                         {this.props.children}
-                    </Grid>
-                </Grid>
+                    </div>
+                </div>
             </div>
         );
     }

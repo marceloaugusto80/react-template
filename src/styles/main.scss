@@ -1,0 +1,18 @@
+$color1:  rgb(231, 231, 231);
+$color2:  rgb(43, 43, 43);
+$color3:  rgb(32, 104, 114);
+$color4:  rgb(119, 42, 80);
+
+body {
+    color: $color2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table {
+
+    background-color: $color1;
+
+    thead {
+        background-color: $color1;
+    }
+}

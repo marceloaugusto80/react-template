@@ -5,6 +5,7 @@ import { AsyncDemo } from "./async-demo";
 import { DataGridDemo } from "./data-grid-demo";
 
 
+
 export class MainPage extends React.Component {
 
     private sideLinks: Array<ILayoutLink>
@@ -14,8 +15,8 @@ export class MainPage extends React.Component {
         this.state = {};
 
         this.sideLinks = [
-            { name: "Async demo", route: "/"  },
-            { name: "Datagrid demo", route: "/data-grid"  }
+            { name: "Async demo", route: "/" },
+            { name: "Datagrid demo", route: "/data-grid" }
         ];
     }
 
@@ -24,8 +25,8 @@ export class MainPage extends React.Component {
         return (
             <BrowserRouter >
                 <Layout title="React template" links={this.sideLinks}>
-                    <Route exact path="/" render={(props)=> <AsyncDemo title="Async Demo 1" delay={2000}/> } />
-                    <Route exact path="/data-grid"  component={ DataGridDemo }  />
+                    <Route exact path="/" render={(props) => <AsyncDemo title="Async Demo 1" delay={2000} />} />
+                    <Route exact path="/data-grid" component={DataGridDemo} />
                 </Layout>
             </BrowserRouter>
         );

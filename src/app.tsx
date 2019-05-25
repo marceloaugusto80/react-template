@@ -1,9 +1,7 @@
-import "typeface-roboto";
-import "./styles/main.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { MainPage } from "./components/main-page";
 
 
-ReactDOM.render(<MainPage/>, document.getElementById("root"));
+ReactDOM.render(<MainPage />, document.getElementById("root"));
 
