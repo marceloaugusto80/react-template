@@ -49,9 +49,7 @@ it will build and serve the application with hot reloading.
 
 ## Run tests:
 
-In [Visual Code](https://code.visualstudio.com) press F5.
-**or** 
-Open the terminal in the project folder and type:
+In [Visual Code](https://code.visualstudio.com) press F5.</br>**or**</br>Open the terminal in the project folder and type:
 ```
 npm test
 ```
