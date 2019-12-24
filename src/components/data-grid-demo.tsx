@@ -21,7 +21,7 @@ export class DataGridDemo extends React.Component<{}, DataGridDemoState> {
 
     constructor(props: {}) {
         super(props);
-        this.state = { isLoading: false, albums: [], errorMessage: "foo" };
+        this.state = { isLoading: false, albums: [], errorMessage: "" };
     }
 
     getDataAsync = async () => {

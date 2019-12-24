@@ -21,7 +21,6 @@ function getConfig(isDev = true) {
 
         // the entry point of the application. where your app start executing.
         entry: {
-            "main": "./src/styles/main.scss",
             "polyfill": "@babel/polyfill",
             "app": "./src/app.tsx"
         },
@@ -49,28 +48,10 @@ function getConfig(isDev = true) {
         module: {
             rules: [
 
-                // transpiling for older browsers
+                // transpiling code (see: ./babel.config.json)
                 {
                     test: /\.tsx?$/, loader: "babel-loader", exclude: /node_modules/,
-                    options: {
-                        presets: [
-                            "@babel/preset-react",
-                            ["@babel/preset-env",
-                                {
-                                    "targets": {
-                                        "chrome": "58",
-                                        "ie": "11"
-                                    }
-                                }]
-                        ],
-                        plugins: [
-                            "react-hot-loader/babel"
-                        ]
-                    }
                 },
-
-                // transpiling typescript
-                { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
                 // maintain source maps continuity
                 { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
@@ -90,7 +71,7 @@ function getConfig(isDev = true) {
                     ]
                 },
 
-                // bundle css file references
+                // bundle font files references
                 {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader",
                     options: { name: "[name].[ext]", outputPath: "fonts/" }
@@ -111,6 +92,7 @@ function getConfig(isDev = true) {
             "react": "React",
             "react-dom": "ReactDOM",
             "react-router-dom": "ReactRouterDOM",
+            "axios": "axios"
         },
 
         plugins: [
@@ -148,6 +130,11 @@ function getConfig(isDev = true) {
                         module: "react-router-dom",
                         global: "ReactRouterDOM",
                         entry: isDev ? "umd/react-router-dom.js" : "umd/react-router-dom.min.js"
+                    },
+                    {
+                        module: "axios",
+                        global: "axios",
+                        entry: isDev ? "dist/axios.js" : "dist/axios.min.js"
                     },
                 ]
             })
