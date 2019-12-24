@@ -11,7 +11,7 @@
     "test": "npx jest ./src/",
     "start": "npx webpack-dev-server --env.DEVELOPMENT --hot",
     "build": "npx webpack --env.PRODUCTION",
-    "build-dev": "npx webpack --env.DEVELOPMENT",
+    "build-dev": "npx webpack --env.DEVELOPMENT"
   },
   "author": "",
   "license": "MIT",
