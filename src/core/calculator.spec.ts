@@ -1,5 +1,3 @@
-import {expect } from "chai";
-import "mocha";
 import { Calculator } from "./calculator";
 
 describe("Calculator", function(){
@@ -11,7 +9,7 @@ describe("Calculator", function(){
 
         let actual = new Calculator().sum(5, 5);
         
-        expect(actual).to.be.eq(expected);
+        expect(actual).toEqual(expected);
     });
     
 
@@ -22,7 +20,7 @@ describe("Calculator", function(){
 
         let actual = await new Calculator().sumAsync(5, 5);
         
-        expect(actual).to.be.eq(expected);
+        expect(actual).toEqual(expected);
     });
 
 

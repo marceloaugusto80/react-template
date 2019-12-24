@@ -20,10 +20,7 @@ function getConfig(isDev = true) {
 
 
         // the entry point of the application. where your app start executing.
-        entry: {
-            "polyfill": "@babel/polyfill",
-            "app": "./src/app.tsx"
-        },
+        entry: { "app": "./src/app.tsx" },
 
 
         // the compilation/bundling output

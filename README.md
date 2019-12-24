@@ -11,7 +11,7 @@ This project uses the following thecnologies and libs:
 - [Typescript](https://www.typescriptlang.org/)
 - [Sass](https://sass-lang.com/)
 - [Babel](https://babeljs.io/)
-- [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
+- [Jest](https://jestjs.io/)
 - [React-hot-loader](https://github.com/gaearon/react-hot-loader)
 - [Webpack](https://webpack.js.org/)
 
@@ -47,9 +47,11 @@ it will build and serve the application with hot reloading.
 
 
 
-## Run the tests:
+## Run tests:
 
-In Visual Code press F5 or open the terminal in the project folder and type:
+In [Visual Code](https://code.visualstudio.com) press F5.
+**or** 
+Open the terminal in the project folder and type:
 ```
 npm test
 ```
@@ -59,6 +61,6 @@ npm test
 
 Open the terminal and type:
 ```
-npm run build-prod
+npm run build
 ```
 The output will be in the ```dist``` folder.
