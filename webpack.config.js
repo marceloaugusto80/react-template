@@ -145,7 +145,8 @@ function getConfig(isDev = true) {
         devServer: isDev ?
             {
                 contentBase: path.join(__dirname, "dist"),
-                port: 9000
+                port: 9000,
+                historyApiFallback: true
             } :
             undefined
 
