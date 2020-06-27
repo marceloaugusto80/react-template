@@ -3,11 +3,11 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Layout } from "./layout";
 import { AsyncDemo } from "./async-demo";
 import { DataGridDemo } from "./data-grid-demo";
-import { hot } from "react-hot-loader/root";
 
 
 
-class MainPage extends React.Component {
+
+export default class MainPage extends React.Component {
 
     render() {
 
@@ -25,6 +25,3 @@ class MainPage extends React.Component {
 
 
 }
-
-// you need to export the component this way to hot reload to work.
-export default hot(MainPage);

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
-
+const webpack = require("webpack");
 
 
 function getConfig(isDev = true) {
@@ -134,7 +134,10 @@ function getConfig(isDev = true) {
                         entry: isDev ? "dist/axios.js" : "dist/axios.min.js"
                     },
                 ]
-            })
+            }),
+
+            // HotModuleReplacementPlugin necessary to hot reload to work
+            new webpack.HotModuleReplacementPlugin()
 
         ],
 
@@ -143,7 +146,8 @@ function getConfig(isDev = true) {
             {
                 contentBase: path.join(__dirname, "dist"),
                 port: 9000,
-                historyApiFallback: true
+                historyApiFallback: true,
+                hot: true
             } :
             undefined
 
