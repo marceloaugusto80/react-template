@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, {Fragment, PureComponent} from "react";
+import styled from "styled-components";
 import { Calculator } from "../core/calculator";
 
 export interface AsyncDemoProps {
@@ -12,7 +13,7 @@ interface AsyncDemoState {
     isCalculating: boolean;
 }
 
-export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
+export class AsyncDemo extends PureComponent<AsyncDemoProps, AsyncDemoState>{
 
     constructor(props: AsyncDemoProps) {
         super(props);
@@ -20,42 +21,43 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
     }
 
 
-    showMessage = async () => {
-
-        let calc = new Calculator();
-
+    handleCalculateClick = async () => {
         this.setState({ isCalculating: true });
-
-        let sum = await calc.sumAsync(this.state.valueA, this.state.valueB, this.props.delay);
-
+        const calc = new Calculator();
+        const sum = await calc.sumAsync(this.state.valueA, this.state.valueB, this.props.delay);
         this.setState({ result: sum });
-
         this.setState({ isCalculating: false });
-
     }
 
-    onInputChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputA = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ valueA: parseInt(e.currentTarget.value) });
     }
 
-    onInputChangeB = (e: React.FormEvent<HTMLInputElement>) => {
+    handleInputB = (e: React.FormEvent<HTMLInputElement>) => {
         this.setState({ valueB: parseInt(e.currentTarget.value) });
     }
-
 
     render() {
 
         return (
-            <div>
+            <Fragment>
+                <h2>Calculate async</h2>
+                <p >Current async delay is {this.props.delay / 1000} secs.</p>
                 <div>
-                    <div className="view-title">Calculate async</div>
-                    <p >Current async delay is {this.props.delay / 1000} secs.</p>
-                </div>
-                <div>
-                    <input type="number" placeholder="Value A..." value={this.state.valueA} onChange={this.onInputChangeA} />
-                    <span>+</span>
-                    <input type="number" placeholder="Value B..." value={this.state.valueB} onChange={this.onInputChangeB} />
-                    <button onClick={this.showMessage} disabled={this.state.isCalculating}>Click here to sum</button>
+                    <Input 
+                        type="number" 
+                        placeholder="Value A..." 
+                        value={this.state.valueA} 
+                        onChange={this.handleInputA} />
+                    <span> + </span>
+                    <Input 
+                        type="number" 
+                        placeholder="Value B..." 
+                        value={this.state.valueB} 
+                        onChange={this.handleInputB} />
+                    <Button 
+                        onClick={this.handleCalculateClick} 
+                        disabled={this.state.isCalculating}>Click here to sum</Button>
                 </div>
                 <div>
                     <span>Result: </span>
@@ -63,9 +65,16 @@ export class AsyncDemo extends React.Component<AsyncDemoProps, AsyncDemoState>{
                         {this.state.isCalculating ? "Wait for async calculation..." : this.state.result}
                     </span>
                 </div>
-            </div>
+            </Fragment>
         );
-
     }
-
 }
+
+const Input = styled.input`
+    width: 50px;
+    font: inherit;
+`;
+
+const Button = styled.button`
+    font: inherit;
+`;

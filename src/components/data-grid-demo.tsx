@@ -1,9 +1,7 @@
-import * as React from "react";
+import React, { Fragment, PureComponent } from "react";
 import Axios from "axios";
 
-
-
-interface DataGridDemoState {
+interface State {
     isLoading: boolean;
     albums: Album[];
     errorMessage: string;
@@ -17,67 +15,68 @@ interface Album {
     thumbnailUrl: string;
 }
 
-export class DataGridDemo extends React.Component<{}, DataGridDemoState> {
+export class DataGridDemo extends PureComponent<{}, State> {
 
     constructor(props: {}) {
         super(props);
         this.state = { isLoading: false, albums: [], errorMessage: "" };
     }
 
-    getDataAsync = async () => {
-
-        this.setState({ isLoading: true })
-
+    handleDownloadData = async () => {
         const url = "https://jsonplaceholder.typicode.com/photos";
-
+        this.setState({ isLoading: true })
         try {
-            let response = await Axios.get<Album[]>(url);
+            const response = await Axios.get<Album[]>(url);
             this.setState({ albums: response.data, errorMessage: "" });
-
         } catch (error) {
             this.setState({ errorMessage: error.message });
         }
-
-        this.setState({ isLoading: false })
+        finally {
+            this.setState({ isLoading: false })
+        }
     }
 
     render() {
 
+        const { errorMessage, albums, isLoading } = this.state;
+
         return (
-            <div>
-                <div className="view-title">Download async</div>
-                <button onClick={this.getDataAsync}>Download data</button>
-                <span>{this.state.errorMessage}</span>
+            <Fragment>
+                <h2>Table</h2>
+                <button onClick={this.handleDownloadData}>Download data async</button>
                 {
-                    this.state.albums && this.state.albums.length > 0 &&
+                    errorMessage &&
+                    <span>{errorMessage}</span>
+                }
+                {
+                    (albums && albums.length > 0) &&
                     <table>
                         <thead>
                             <tr>
                                 <th></th>
                                 <th>Thumb</th>
                                 <th>Title</th>
-                                <th>Title char count</th>
                                 <th>Link</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.albums.slice(0, 100).map((el, i) => {
-                                return <tr key={el.id}>
+                            {
+                                albums.slice(0, 30).map((el, i) => <tr key={el.id}>
                                     <td>{i + 1}</td>
-                                    <td><img width={100} height={100} src={el.thumbnailUrl} /></td>
+                                    <td><img width={100} height={100} src={el.thumbnailUrl} alt="thumb" /></td>
                                     <td>{el.title}</td>
-                                    <td>{el.title.length}</td>
                                     <td><a target="_blank" href={el.url}>{el.url}</a></td>
                                 </tr>
-                            })}
+                                )
+                            }
                         </tbody>
                     </table>
                 }
                 {
-                    this.state.isLoading &&
-                    <div>Downloading...</div>
+                    isLoading &&
+                    <p>Downloading...</p>
                 }
-            </div>
+            </Fragment>
 
 
         );
