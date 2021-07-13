@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "npx jest",
     "start": "npx webpack serve",
     "build:dev": "npx webpack",
     "build:prod": "npx webpack --env PRODUCTION"
