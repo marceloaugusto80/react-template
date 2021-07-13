@@ -1,4 +1,6 @@
-# React template
+# React + Typescript template
+
+![](./.github/logo-100x600.jpg)
 
 ## Overview
 
