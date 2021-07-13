@@ -1,8 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import MainPage from "./components/main-page";
-import "./styles/main.scss";
+import Layout from "./components/layout";
 
-
-ReactDOM.render(<MainPage />, document.getElementById("root"));
+ReactDOM.render(<Layout />, document.getElementById("root"));
 

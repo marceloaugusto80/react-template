@@ -1,34 +1,30 @@
-# react-template
+# React template
 
 ## Overview
 
-Basic fron-end template. 
+Basic react web frontend template. 
+
+<br>
 
 ## Details
-This project uses the following thecnologies and libs:
+This project uses the following libs:
 
 - [React](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [Sass](https://sass-lang.com/)
+- [Styled Components](https://styled-components.com/)
 - [Babel](https://babeljs.io/)
 - [Jest](https://jestjs.io/)
-- [React-hot-loader](https://github.com/gaearon/react-hot-loader)
 - [Webpack](https://webpack.js.org/)
+- [React Fast Refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin)
 
-Note: Test runner already defined if you are using [Visual Code](https://code.visualstudio.com/download).
 
+<br>
 
-# How to
+# Setup
 
-## Setup
 Clone the repo.
 
-Install [Node](https://nodejs.org) if you don't have it.
-
-Install [npx](https://www.npmjs.com/package/npx) globally:
-```
-npm i -g npx
-```
+Install [Node](https://nodejs.org) if it's not already installed.
 
 Open the terminal in the project folder and type:
 ```
@@ -36,7 +32,9 @@ npm install
 ```
 That will install the project dependencies. 
 
-## Run
+<br>
+
+# Run
 
 To run the app, type:
 
@@ -45,20 +43,20 @@ npm start
 ```
 it will build and serve the application with hot reloading.
 
+<br>
 
+# Tests:
 
-## Run tests:
-
-In [Visual Code](https://code.visualstudio.com) press F5.</br>**or**</br>Open the terminal in the project folder and type:
+Open the terminal in the project folder and run:
 ```
 npm test
 ```
+<br>
 
-
-## Shipping:
+# Shipping:
 
 Open the terminal and type:
 ```
-npm run build
+npm run build:prod
 ```
 The output will be in the ```dist``` folder.

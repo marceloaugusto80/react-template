@@ -2,73 +2,62 @@ require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const webpack = require("webpack");
 
 
-function getConfig(isDev = true) {
+function getConfig(isDev) {
+
+    const babelConfig = {
+        presets: [
+            ["@babel/preset-env", { targets: "> 0.25%, not dead" }],
+            "@babel/preset-react",
+            "@babel/preset-typescript"
+        ],
+        plugins: [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-transform-runtime",
+            isDev && require.resolve("react-refresh/babel") // necessary to hot reloading
+        ].filter(Boolean)
+    };
 
     return {
 
         // build mode 
         mode: isDev ? "development" : "production",
 
+        // the runtime environment that will run your code
+        target: "web",
 
         // Enable sourcemaps for debugging webpack's output.
-        devtool: isDev ? "inline-source-map" : "node",
+        devtool: isDev ? "inline-source-map" : undefined,
 
-
-        // the entry point of the application. where your app start executing.
+        // the entry point of the application
         entry: { "app": "./src/app.tsx" },
 
-
-        // the compilation/bundling output
+        // the bundle output
         output: {
-            filename: isDev ? "[name].js" : "[name].[hash].js",
-            path: __dirname + "/dist",
-            publicPath: "/"
+            filename: "[name].[chunkhash].js",
+            path: __dirname + "/dist"
         },
-
 
         resolve: {
-            // Add '.ts' and '.tsx' as resolvable extensions.
             extensions: [".ts", ".tsx", ".js", ".json"],
-
-            // react-hot-loader replaces react-dom
-            alias: {
-                'react-dom': '@hot-loader/react-dom'
-            }
         },
-
 
         module: {
             rules: [
 
-                // transpiling code (see: ./babel.config.json)
+                // transpiling code
                 {
-                    test: /\.tsx?$/, loader: "babel-loader", exclude: /node_modules/,
+                    test: /\.tsx?$/, use: {
+                        loader: "babel-loader", 
+                        options: babelConfig
+                    }
                 },
 
-                // maintain source maps continuity
-                { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-
-                // compile sass
-                {
-                    test: /\.(sa|sc|c)ss$/,
-                    use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                hmr: isDev
-                            }
-                        },
-                        "css-loader",
-                        "sass-loader"
-                    ]
-                },
-
-                // bundle font files references
+                // bundle font files
                 {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader",
                     options: { name: "[name].[ext]", outputPath: "fonts/" }
@@ -81,10 +70,11 @@ function getConfig(isDev = true) {
                         options: { name: "[name].[hash].[ext]", outputPath: "images/" }
                     }
                 },
-
             ]
-        },
 
+        }, // end module
+
+        // we dont want this dependencies to be bundled. See HmtlWebpackExternalsPlugin below.
         externals: {
             "react": "React",
             "react-dom": "ReactDOM",
@@ -96,10 +86,6 @@ function getConfig(isDev = true) {
 
             // delete everything from dist folder before build
             new CleanWebpackPlugin(),
-
-            new MiniCssExtractPlugin({
-                filename: isDev ? "[name].css" : '[name].[hash].css'
-            }),
 
             // auto generates index.html
             new HtmlWebpackPlugin({
@@ -136,15 +122,16 @@ function getConfig(isDev = true) {
                 ]
             }),
 
-            // HotModuleReplacementPlugin necessary to hot reload to work
-            new webpack.HotModuleReplacementPlugin()
+            // HotModuleReplacementPlugin necessary to hot reloading
+            isDev && new webpack.HotModuleReplacementPlugin(),
+            
+            // Hot realoading plugin
+            isDev && new ReactRefreshWebpackPlugin()
 
-        ],
-
+        ].filter(Boolean), // end plugins
 
         devServer: isDev ?
             {
-                contentBase: path.join(__dirname, "dist"),
                 port: 9000,
                 historyApiFallback: true,
                 hot: true
@@ -157,12 +144,11 @@ function getConfig(isDev = true) {
 
 
 module.exports = function (env) {
-    const isDev = !!env.DEVELOPMENT;
+    const isDev = !env.PRODUCTION;
 
-    console.log(
-        "\n##\n## Selected environment: " +
+    console.log("\n\n####\n" +
         (isDev ? "DEVELOPMENT" : "PRODUCTION") +
-        "\n##\n")
+        "\n####\n\n")
 
     return getConfig(isDev);
 }
