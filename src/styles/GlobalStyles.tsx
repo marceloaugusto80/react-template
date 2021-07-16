@@ -1,10 +1,11 @@
 import {createGlobalStyle} from "styled-components";
+import "@fontsource/roboto";
 
 export const GlobalStyle = createGlobalStyle`
     
     html {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 600;
+        font-family: Roboto;
+        font-weight: 700;
         font-size: 18px;
     }
     

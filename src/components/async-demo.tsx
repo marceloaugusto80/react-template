@@ -1,6 +1,7 @@
 import React, {Fragment, PureComponent} from "react";
 import styled from "styled-components";
 import { Calculator } from "../core/calculator";
+import CalculatorImg from "../resources/images/calculator-64x64.png";
 
 export interface AsyncDemoProps {
     delay: number;
@@ -41,8 +42,11 @@ export class AsyncDemo extends PureComponent<AsyncDemoProps, AsyncDemoState>{
 
         return (
             <Fragment>
-                <h2>Calculate async</h2>
-                <p >Current async delay is {this.props.delay / 1000} secs.</p>
+                <Title>
+                    <img src={CalculatorImg} alt=""/>
+                    <h2>Calculate async</h2>
+                </Title>
+                <p>Current async delay is {this.props.delay / 1000} secs.</p>
                 <div>
                     <Input 
                         type="number" 
@@ -69,6 +73,12 @@ export class AsyncDemo extends PureComponent<AsyncDemoProps, AsyncDemoState>{
         );
     }
 }
+
+const Title = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 8px;
+`;
 
 const Input = styled.input`
     width: 50px;

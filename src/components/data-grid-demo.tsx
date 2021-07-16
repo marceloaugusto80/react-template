@@ -1,5 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import Axios from "axios";
+import styled from "styled-components";
+import TableImg from "../resources/images/table-64x64.png";
 
 interface State {
     isLoading: boolean;
@@ -42,7 +44,10 @@ export class DataGridDemo extends PureComponent<{}, State> {
 
         return (
             <Fragment>
-                <h2>Table</h2>
+                <Title>
+                    <img src={TableImg}/>
+                    <h2>Table</h2>
+                </Title>
                 <button onClick={this.handleDownloadData}>Download data async</button>
                 {
                     errorMessage &&
@@ -84,3 +89,9 @@ export class DataGridDemo extends PureComponent<{}, State> {
     }
 
 }
+
+const Title = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 8px;
+`;

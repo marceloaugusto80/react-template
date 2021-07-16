@@ -1,10 +1,10 @@
-require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 function getConfig(isDev) {
@@ -39,7 +39,7 @@ function getConfig(isDev) {
         // the bundle output
         output: {
             filename: "[name].[chunkhash].js",
-            path: __dirname + "/dist"
+            path: path.resolve(__dirname, "dist")
         },
 
         resolve: {
@@ -52,22 +52,22 @@ function getConfig(isDev) {
                 // transpiling code
                 {
                     test: /\.tsx?$/, use: {
-                        loader: "babel-loader", 
+                        loader: "babel-loader",
                         options: babelConfig
                     }
                 },
 
-                // bundle font files
+                // extract css imports
                 {
-                    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader",
-                    options: { name: "[name].[ext]", outputPath: "fonts/" }
+                    test: /\.css$/,
+                    use: [MiniCssExtractPlugin.loader, "css-loader"]
                 },
 
                 // bundle image files
                 {
-                    test: /\.(jpg|png)$/, use: {
+                    test: /\.(jpg|png|gif|bmp)$/, use: {
                         loader: "file-loader",
-                        options: { name: "[name].[hash].[ext]", outputPath: "images/" }
+                        options: { name: "[name].[contenthash].[ext]", outputPath: "images/" }
                     }
                 },
             ]
@@ -95,6 +95,10 @@ function getConfig(isDev) {
                 template: "src/index.html"
             }),
 
+            // options for extracted css
+            new MiniCssExtractPlugin({
+                filename: "[name].[chunkhash].css"
+            }),
 
             // include external libraries to html. externals are used in code but excluded from build
             new HtmlWebpackExternalsPlugin({
@@ -124,7 +128,7 @@ function getConfig(isDev) {
 
             // HotModuleReplacementPlugin necessary to hot reloading
             isDev && new webpack.HotModuleReplacementPlugin(),
-            
+
             // Hot realoading plugin
             isDev && new ReactRefreshWebpackPlugin()
 
