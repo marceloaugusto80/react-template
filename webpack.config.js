@@ -97,7 +97,7 @@ function getConfig(isDev) {
 
             // options for extracted css
             new MiniCssExtractPlugin({
-                filename: "[name].[chunkhash].css"
+                filename: isDev ? "[name].css" : "[contenthash].css"
             }),
 
             // include external libraries to html. externals are used in code but excluded from build
