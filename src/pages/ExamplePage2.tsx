@@ -47,6 +47,7 @@ export class ExamplePage2 extends PureComponent<{}, State> {
 
         return (
             <Fragment>
+                <h1>Example page 2</h1>
                 <Title>
                     <img src={TableImg}/>
                     <h2>Table</h2>

@@ -14,13 +14,11 @@ interface Env {
 
 function createConfiguration(env: Env): Configuration {
 
+  
+
     const babelConfig = {
-        presets: [
-            ["@babel/preset-env", { targets: "> 0.25%, not dead" }],
-            "@babel/preset-react",
-            "@babel/preset-typescript"
-        ],
-        plugins: [
+        presets: [ "@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript" ],
+        plugins: [ 
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-transform-runtime",
             env.hot && require.resolve("react-refresh/babel")
@@ -28,6 +26,8 @@ function createConfiguration(env: Env): Configuration {
     };
 
     return {
+
+        context: path.join(__dirname, "src"),
 
         mode: env.production ? "production" : "development",
 
@@ -41,19 +41,21 @@ function createConfiguration(env: Env): Configuration {
         },
 
         entry: { 
-            index: "./src/Index.tsx" 
+            index: "./Index.tsx" 
         },
 
         output: {
             path: path.resolve(__dirname, "dist"),
-            filename: env.production ? "[name].[contenthash].js" : "[name].js",
+            filename: env.production ? "js/[name][contenthash].js" : "js/[name].js",
+            assetModuleFilename: "asset/[name].[hash].[ext]",
+            publicPath: "/"
         },
 
         module: {
             rules: [
 
                 { 
-                    test: /\.tsx?$/, 
+                    test: /\.tsx?$/i, 
                     use: {
                         loader: "babel-loader",
                         options: babelConfig
@@ -61,15 +63,13 @@ function createConfiguration(env: Env): Configuration {
                 },
 
                 {
-                    test: /\.css$/,
+                    test: /\.css$/i,
                     use: [MiniCssExtractPlugin.loader, "css-loader"]
                 },
 
                 {
-                    test: /\.(jpg|png|gif|bmp)$/, use: {
-                        loader: "file-loader",
-                        options: { name: "[name].[contenthash].[ext]", outputPath: "images/" }
-                    }
+                    test: /\.(jpe?g|png|gif|svg)$/i, 
+                    type: "asset/resource"
                 },
             ]
 
@@ -80,14 +80,13 @@ function createConfiguration(env: Env): Configuration {
             new CleanWebpackPlugin(),
 
             new HtmlWebpackPlugin({
-                title: "React Template",
-                hash: true,
-                favicon: "src/favicon.ico",
-                template: "src/index.html"
+                favicon: "./resources/images/favicon.ico",
+                template: "./resources/index.html",
+                minify: env.production
             }),
 
             new MiniCssExtractPlugin({
-                filename: env.production ? "[contenthash].css" : "[name].css"
+                filename: "css/" +  (env.production ? "[name].[hash].css" : "[name].css")
             }),
 
             env.hot && new ReactRefreshWebpackPlugin()
@@ -98,7 +97,10 @@ function createConfiguration(env: Env): Configuration {
         {
             port: 9000,
             historyApiFallback: true,
-            hot: env.hot
+            hot: env.hot,
+            devMiddleware: {
+                writeToDisk: true
+            }
         }
 
     };
@@ -108,7 +110,7 @@ export default function (e: any) {
 
     const env: Env = {
         production: !!e["PRODUCTION"],
-        hot: !e["PRODUCTION"] && e["HOT"]
+        hot: !e["PRODUCTION"] && !!e["HOT"]
     };
 
     return createConfiguration(env);

@@ -1,3 +1,7 @@
+
+/**
+ * Just an example logic.
+ */
 export class ExampleLogic {
     
     sum(a: number, b: number) {

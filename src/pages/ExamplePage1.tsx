@@ -17,12 +17,12 @@ export function ExamplePage1() {
     const handleCalculateClick = async () => {
         setIsCalculating(true);
 
-        try{
+        try {
             const logic = new ExampleLogic();
-            const sum = await logic.sumAsync(this.state.valueA, this.state.valueB, 3000);
+            const sum = await logic.sumAsync(valueA, valueB, 3000);
             setResult(sum);
         }
-        catch(e) {
+        catch (e) {
             console.log(`Error occurred: ${(e as Error).message}`);
         }
         finally {
@@ -41,11 +41,11 @@ export function ExamplePage1() {
     return (
         <Fragment>
             <h1>Example page 1</h1>
-            <Title>
+            <Header>
                 <img src={CalculatorImg} alt="" />
                 <h2>Calculate async</h2>
-            </Title>
-            <div>
+            </Header>
+            <Controls>
                 <Input
                     type="number"
                     placeholder="Value A..."
@@ -60,9 +60,9 @@ export function ExamplePage1() {
                 <Button
                     onClick={handleCalculateClick}
                     disabled={isCalculating}>Click here to sum</Button>
-            </div>
+            </Controls>
             <div>
-                <span>Result: </span>
+                <strong>Result: </strong>
                 <span>
                     {isCalculating ? "Wait for async calculation..." : result}
                 </span>
@@ -71,10 +71,20 @@ export function ExamplePage1() {
     );
 }
 
-const Title = styled.div`
+const Header = styled.div`
     display: flex;
     flex-flow: row nowrap;
     column-gap: 8px;
+`;
+
+const Controls = styled.div`
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+
 `;
 
 const Input = styled.input`

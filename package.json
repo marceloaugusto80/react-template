@@ -9,9 +9,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "start": "npx webpack serve",
-    "build:dev": "npx webpack",
-    "build:prod": "npx webpack --env PRODUCTION"
+    "start": "npx webpack serve --env HOT",
+    "build": "npx webpack --env PRODUCTION"
   },
   "author": "",
   "license": "MIT",
@@ -31,7 +30,6 @@
     "@types/webpack-dev-server": "^4.7.2",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "react-refresh": "^0.11.0",
