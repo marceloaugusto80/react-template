@@ -1,4 +1,4 @@
-export class Calculator {
+export class ExampleLogic {
     
     sum(a: number, b: number) {
         return a + b;
