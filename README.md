@@ -59,6 +59,6 @@ npm test
 
 Open the terminal and type:
 ```
-npm run build:prod
+npm run build
 ```
 The output will be in the ```dist``` folder.
