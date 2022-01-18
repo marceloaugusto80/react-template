@@ -1,4 +1,8 @@
-export class Calculator {
+
+/**
+ * Just an example logic.
+ */
+export class ExampleLogic {
     
     sum(a: number, b: number) {
         return a + b;

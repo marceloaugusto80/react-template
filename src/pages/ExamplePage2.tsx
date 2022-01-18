@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import Axios from "axios";
 import styled from "styled-components";
-import TableImg from "../resources/images/table-64x64.png";
+import TableImg from "@/resources/images/table-64x64.png";
 
 interface State {
     isLoading: boolean;
@@ -17,7 +17,10 @@ interface Album {
     thumbnailUrl: string;
 }
 
-export class DataGridDemo extends PureComponent<{}, State> {
+/**
+ * Example class component.
+ */
+export class ExamplePage2 extends PureComponent<{}, State> {
 
     constructor(props: {}) {
         super(props);
@@ -44,6 +47,7 @@ export class DataGridDemo extends PureComponent<{}, State> {
 
         return (
             <Fragment>
+                <h1>Example page 2</h1>
                 <Title>
                     <img src={TableImg}/>
                     <h2>Table</h2>
