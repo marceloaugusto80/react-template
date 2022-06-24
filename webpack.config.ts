@@ -47,7 +47,7 @@ function createConfiguration(env: Env): Configuration {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: env.production ? "js/[name][contenthash].js" : "js/[name].js",
-            assetModuleFilename: "asset/[name].[hash].[ext]",
+            assetModuleFilename: env.production ? "asset/[name].[contenthash][ext]" : "asset/[name][ext]",
             publicPath: "/"
         },
 
@@ -86,7 +86,7 @@ function createConfiguration(env: Env): Configuration {
             }),
 
             new MiniCssExtractPlugin({
-                filename: "css/" +  (env.production ? "[name].[hash].css" : "[name].css")
+                filename: "css/" +  (env.production ? "[name].[contenthash].css" : "[name].css")
             }),
 
             env.hot && new ReactRefreshWebpackPlugin()
