@@ -30,12 +30,3 @@
 
     ]
 }
-
-// "type": "chrome",
-//             "request": "attach",
-//             "name": "Chrome",
-//             "url": "http://localhost:9000",
-//             "port": 9222,
-//             "sourceMaps": true,
-//             "webRoot": "${workspaceFolder}/src",
-//             "outFiles": ["${workspaceFolder}/dist"]
