@@ -20,7 +20,6 @@ export function MainLayout() {
           <div className="menu">
             <Link to="/">Home</Link>
             <Link to="/example-page-1">Example page 1</Link>
-            <Link to="/example-page-2">Example page 2</Link>
           </div>
           <div className="body">
             <Routes>

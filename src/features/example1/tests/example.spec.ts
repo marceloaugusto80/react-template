@@ -1,4 +1,4 @@
-import { ExampleLogic } from "../ExampleLogic";
+import { ExampleLogic } from "../services/ExampleLogic";
 import { describe, it, expect } from "vitest";
 
 describe("Example test", function () {

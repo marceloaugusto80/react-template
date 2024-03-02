@@ -1,11 +1,8 @@
 import React, { Fragment, ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import { ExampleLogic } from "@/features/example1/ExampleLogic";
+import { ExampleLogic } from "@/features/example1/services/ExampleLogic";
 import CalculatorImg from "./resources/calculator-64x64.png";
 
-/**
- * Example functional component.
- */
 export function ExamplePage1() {
   const [valueA, setValueA] = useState(0);
   const [valueB, setValueB] = useState(0);
