@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "vite test",
+    "test": "vitest run",
     "start": "vite",
     "build": "vite build"
   },
