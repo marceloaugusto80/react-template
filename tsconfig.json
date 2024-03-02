@@ -1,6 +1,6 @@
 {
   "compileOnSave": false,
-  "exclude": ["node_modules", "tests"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "sourceMap": true,
     "esModuleInterop": true,
@@ -9,7 +9,7 @@
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
-      "@/*" : ["src/*"]
+      "@/*": ["src/*"]
     }
   }
 }
